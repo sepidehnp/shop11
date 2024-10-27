@@ -1,13 +1,13 @@
 @extends('admin.layouts.layout')
 @section('admin_page_title')
-Create Category - Admin Panel
+Edit Category - Admin Panel
 @endsection
 @section('admin_layout')
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Create Category</h5>
+                <h5 class="card-title mb-0">Edit Category</h5>
             </div>
             <div class="card-body">
              @if ($errors->any())
@@ -28,11 +28,12 @@ Create Category - Admin Panel
                @endif
 
 
-                <form action="{{ route('store.cat') }}" method="POST">
+                <form action="{{ route('update.cat', $category_info->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <label for="category_name" class="fw-bold mb-2">Give Name Of Your Category</label>
-                    <input type="text" class="form-control" name="category_name" placeholder="computer">
-                    <button type="submit" class="btn btn-primary w-100 mt-2">Add Category</button>
+                    <input type="text" class="form-control" name="category_name" value="{{ $category_info->category_name }}">
+                    <button type="submit" class="btn btn-primary w-100 mt-2">Update Category</button>
 
                 </form>
             </div>
